@@ -12,17 +12,20 @@ public class DisplayPanel extends JPanel {
     private static final long serialVersionUID = 1L;
 	private JTable table;
     private DefaultTableModel model;
-    private JRadioButton defaultRadioButton;
-    private JRadioButton sortByGPARadioButton;
+    JRadioButton defaultRadioButton;
+    JRadioButton sortByGPARadioButton;
+    ButtonGroup radioButtonGroup = new ButtonGroup();
+    private StudentController controller;
 
     public DisplayPanel() {
         setLayout(new BorderLayout());
 
         defaultRadioButton = new JRadioButton("Default");
         sortByGPARadioButton = new JRadioButton("Sort by GPA");
-        ButtonGroup radioButtonGroup = new ButtonGroup();
         radioButtonGroup.add(defaultRadioButton);
         radioButtonGroup.add(sortByGPARadioButton);
+        
+        sortByGPARadioButton.addActionListener(controller);
         defaultRadioButton.setSelected(true);
 
         JPanel radioPanel = new JPanel();

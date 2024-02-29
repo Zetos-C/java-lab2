@@ -9,7 +9,7 @@ import java.util.List;
 public class StudentView extends JFrame {
 	private static final long serialVersionUID = 1L;
 	DisplayPanel displayPanel;
-	private InputPanel inputPanel;
+	InputPanel inputPanel;
 	StudentController controller;
 
 	public StudentView() {
@@ -34,11 +34,6 @@ public class StudentView extends JFrame {
         JMenu mnAction = new JMenu("Action");
         menuBar.add(mnAction);
         
-        JMenuItem mntmSave = new JMenuItem("Save");
-        mnAction.add(mntmSave);
-        
-        JMenuItem mntmFind = new JMenuItem("Find");
-        mnAction.add(mntmFind);
         JMenuItem mntmFindByName = new JMenuItem("Find by Name");
         mntmFindByName.addActionListener(e -> findByName());
         mnAction.add(mntmFindByName);
