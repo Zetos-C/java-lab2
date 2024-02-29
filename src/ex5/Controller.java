@@ -21,6 +21,8 @@ public class Controller implements ActionListener {
 		if (e.getSource()==view.openButton) {
 			int show = view.fileChoose.showOpenDialog(view);
 			if (show==JFileChooser.APPROVE_OPTION) {
+				view.textArea.setText("");
+				text = "";
 				try {
 					FileInputStream fileIn = new FileInputStream(view.fileChoose.getSelectedFile());
 					int content;

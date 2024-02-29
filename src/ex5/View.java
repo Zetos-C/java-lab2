@@ -43,14 +43,10 @@ public class View extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
 		setContentPane(contentPane);
-		contentPane.setLayout(null);
+		contentPane.setLayout(new BorderLayout(0, 0));
 		textArea.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
-		
-		textArea.setBounds(10, 0, 638, 399);
 		contentPane.add(textArea);
-		
-		openButton.setBounds(279, 405, 129, 47);
 		openButton.addActionListener(controller);
-		contentPane.add(openButton);
+		contentPane.add(openButton, BorderLayout.SOUTH);
 	}
 }
