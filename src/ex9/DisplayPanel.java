@@ -3,59 +3,77 @@ package ex9;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
 public class DisplayPanel extends JPanel {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	private JTable table;
-    private DefaultTableModel model;
-    JRadioButton defaultRadioButton;
-    JRadioButton sortByGPARadioButton;
-    ButtonGroup radioButtonGroup = new ButtonGroup();
-    private StudentController controller;
+	private DefaultTableModel model;
+	JRadioButton defaultRadioButton;
+	JRadioButton sortByGPARadioButton;
+	ButtonGroup radioButtonGroup = new ButtonGroup();
+	private StudentController controller;
+	List<Student> students;
 
-    public DisplayPanel() {
-        setLayout(new BorderLayout());
+	public DisplayPanel() {
+		setLayout(new BorderLayout());
 
-        defaultRadioButton = new JRadioButton("Default");
-        sortByGPARadioButton = new JRadioButton("Sort by GPA");
-        radioButtonGroup.add(defaultRadioButton);
-        radioButtonGroup.add(sortByGPARadioButton);
-        
-        sortByGPARadioButton.addActionListener(controller);
-        sortByGPARadioButton.setSelected(true);
+		defaultRadioButton = new JRadioButton("Default");
+		sortByGPARadioButton = new JRadioButton("Sort by GPA");
+		radioButtonGroup.add(defaultRadioButton);
+		radioButtonGroup.add(sortByGPARadioButton);
+		defaultRadioButton.addActionListener(new ActionListener() {
 
-        JPanel radioPanel = new JPanel();
-        radioPanel.add(defaultRadioButton);
-        radioPanel.add(sortByGPARadioButton);
-        add(radioPanel, BorderLayout.NORTH);
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				setData(students);
 
-        model = new DefaultTableModel();
-        table = new JTable(model);
-        JScrollPane scrollPane = new JScrollPane(table);
-        add(scrollPane, BorderLayout.CENTER);
+			}
+		});
+		sortByGPARadioButton.addActionListener(new ActionListener() {
 
-        model.addColumn("Name");
-        model.addColumn("ID");
-        model.addColumn("GPA");
-    }
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				setData(students);
 
-    public void addStudent(String name, int id, double gpa) {
-        model.addRow(new Object[]{name, id, gpa});
-    }
+			}
+		});
+		sortByGPARadioButton.setSelected(true);
 
-    public void setData(List<Student> students) {
-        model.setRowCount(0);
-        if (sortByGPARadioButton.isSelected()) {
-            Collections.sort(students, Comparator.comparing(Student::getGpa));
-        }
-        for (Student student : students) {
-            model.addRow(new Object[]{student.getName(), student.getId(), student.getGpa()});
-        }
-    }
+		JPanel radioPanel = new JPanel();
+		radioPanel.add(defaultRadioButton);
+		radioPanel.add(sortByGPARadioButton);
+		add(radioPanel, BorderLayout.NORTH);
+
+		model = new DefaultTableModel();
+		table = new JTable(model);
+		JScrollPane scrollPane = new JScrollPane(table);
+		add(scrollPane, BorderLayout.CENTER);
+
+		model.addColumn("Name");
+		model.addColumn("ID");
+		model.addColumn("GPA");
+	}
+
+	public void addStudent(String name, int id, double gpa) {
+		model.addRow(new Object[] { name, id, gpa });
+	}
+
+	public void setData(List<Student> students) {
+		this.students = students;
+		model.setRowCount(0);
+		if (sortByGPARadioButton.isSelected()) {
+			Collections.sort(students, Comparator.comparing(Student::getGpa));
+		} else if (defaultRadioButton.isSelected()) {
+			Collections.sort(students, Comparator.comparing(Student::getId));
+		}
+		for (Student student : students) {
+			model.addRow(new Object[] { student.getName(), student.getId(), student.getGpa() });
+		}
+	}
 
 }
-

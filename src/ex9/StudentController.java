@@ -70,6 +70,9 @@ public class StudentController implements ActionListener {
 		if (e.getSource() == view.displayPanel.sortByGPARadioButton) {
 			view.displayPanel.setData(students);
 		}
+		if (e.getSource()== view.displayPanel.defaultRadioButton) {
+			view.setDisplayData(students);;
+		}
 	}
 
 	// Load students from file
