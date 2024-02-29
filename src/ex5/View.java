@@ -44,6 +44,7 @@ public class View extends JFrame {
 
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
+		textArea.setEditable(false);
 		textArea.setFont(new Font("DejaVu Sans", Font.PLAIN, 20));
 		contentPane.add(textArea);
 		openButton.addActionListener(controller);

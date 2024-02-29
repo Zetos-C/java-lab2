@@ -30,6 +30,7 @@ public class Controller implements ActionListener {
 						 text += (char)content;
 					}
 					view.textArea.setText(text);
+					fileIn.close();
 				} catch (Exception e1) {
 					e1.printStackTrace();
 				}
