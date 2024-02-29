@@ -26,7 +26,7 @@ public class DisplayPanel extends JPanel {
         radioButtonGroup.add(sortByGPARadioButton);
         
         sortByGPARadioButton.addActionListener(controller);
-        defaultRadioButton.setSelected(true);
+        sortByGPARadioButton.setSelected(true);
 
         JPanel radioPanel = new JPanel();
         radioPanel.add(defaultRadioButton);
