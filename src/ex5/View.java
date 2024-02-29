@@ -1,4 +1,4 @@
-package com.ex5.lab2;
+package ex5;
 
 import java.awt.EventQueue;
 

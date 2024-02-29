@@ -1,4 +1,4 @@
-package com.ex9.lab2;
+package ex9;
 
 public class View {
 
