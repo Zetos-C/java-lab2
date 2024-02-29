@@ -8,15 +8,17 @@ import java.util.List;
 
 public class StudentView extends JFrame {
 	private static final long serialVersionUID = 1L;
-	DisplayPanel displayPanel;
 	InputPanel inputPanel;
 	StudentController controller;
+	DisplayPanel displayPanel;
 
 	public StudentView() {
         setTitle("Student Management System");
-        displayPanel = new DisplayPanel();
     	inputPanel = new InputPanel();
+    	displayPanel = new DisplayPanel();
     	controller = new StudentController(this);
+    	displayPanel.defaultRadioButton.addActionListener(controller);
+    	displayPanel.sortByGPARadioButton.addActionListener(controller);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new BorderLayout());
 

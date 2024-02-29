@@ -16,32 +16,19 @@ public class DisplayPanel extends JPanel {
 	JRadioButton defaultRadioButton;
 	JRadioButton sortByGPARadioButton;
 	ButtonGroup radioButtonGroup = new ButtonGroup();
-	private StudentController controller;
 	List<Student> students;
+	StudentController controller;
 
 	public DisplayPanel() {
 		setLayout(new BorderLayout());
+		
+		
 
 		defaultRadioButton = new JRadioButton("Default");
 		sortByGPARadioButton = new JRadioButton("Sort by GPA");
 		radioButtonGroup.add(defaultRadioButton);
 		radioButtonGroup.add(sortByGPARadioButton);
-		defaultRadioButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				setData(students);
-
-			}
-		});
-		sortByGPARadioButton.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				setData(students);
-
-			}
-		});
+		defaultRadioButton.addActionListener(null);
 		sortByGPARadioButton.setSelected(true);
 
 		JPanel radioPanel = new JPanel();

@@ -67,16 +67,18 @@ public class StudentController implements ActionListener {
 		        JOptionPane.showMessageDialog(view, "Sinh viên đã tồn tại trong danh sách.");
 		    }
 		}
-		if (e.getSource() == view.displayPanel.sortByGPARadioButton) {
+		else if (e.getSource() == view.displayPanel.sortByGPARadioButton) {
+			loadStudents();
 			view.displayPanel.setData(students);
 		}
-		if (e.getSource()== view.displayPanel.defaultRadioButton) {
-			view.setDisplayData(students);;
+		else if (e.getSource()== view.displayPanel.defaultRadioButton) {
+			loadStudents();
+			view.displayPanel.setData(students);
 		}
 	}
 
 	// Load students from file
-	private void loadStudents() {
+	public void loadStudents() {
 	    try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
 	        List<Student> loadedStudents = (List<Student>) ois.readObject();
 	        for (Student student : loadedStudents) {
